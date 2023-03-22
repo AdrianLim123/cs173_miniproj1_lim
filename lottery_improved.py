@@ -120,7 +120,7 @@ def test():
 
     scenario.h2 ("change ticket count (invalid test)")
     scenario += lottery.change_ticket_count(20).run(sender = admin, valid = False)
-
+    
     scenario.h2("buy_ticket (lacking funds test)")
     scenario += lottery.buy_ticket(2).run(amount = sp.tez(1), sender = alice, valid = False)
 
@@ -135,3 +135,9 @@ def test():
 
     scenario.h2("end_game (valid test)")
     scenario += lottery.end_game(22).run(sender = admin)
+
+    scenario.h2 ("change price (invalid user test)")
+    scenario += lottery.change_price(3000000).run(sender = bob, valid = False)
+
+    scenario.h2 ("change ticket count (invalid user test)")
+    scenario += lottery.change_ticket_count(30).run(sender = mike, valid = False)
